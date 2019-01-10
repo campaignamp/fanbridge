@@ -87,7 +87,7 @@ class Client
     /**
      * @return string
      */
-    public function getAuthUrl(): array
+    public function getAuthUrl()
     {
         return $this->baseApiUrl . '/login/oauth/authorize?client_id=' . $this->clientId;
     }
