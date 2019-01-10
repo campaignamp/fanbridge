@@ -1,6 +1,6 @@
 <?php
 
-namespace CampaignAmp\Fanbridge;
+namespace CampaignAmp\FanBridge;
 
 use Fanbridge\Response;
 use GuzzleHttp\Client as Guzzle;

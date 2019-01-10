@@ -1,8 +1,8 @@
 <?php
 
-namespace CampaignAmp\Fanbridge;
+namespace CampaignAmp\FanBridge;
 
-use CampaignAmp\Fanbridge\Request;
+use CampaignAmp\FanBridge\Request;
 
 class Client
 {
