@@ -85,12 +85,11 @@ class Client
     }
 
     /**
-     * @param string $clientId
-     * @return array
+     * @return string
      */
-    public function authorise($clientId): array
+    public function getAuthUrl(): array
     {
-        //
+        return $this->baseApiUrl . '/login/oauth/authorize?client_id=' . $this->clientId;
     }
 
 }
