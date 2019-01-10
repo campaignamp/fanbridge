@@ -29,7 +29,7 @@ class Request
      * @param array $parameters
      * @return Response
      */
-    protected function get($endpoint, array $parameters = []): Response
+    public function get($endpoint, array $parameters = []): Response
     {
         $response = $this->guzzle
             ->request('GET', $endpoint, $parameters);
