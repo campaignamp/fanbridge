@@ -9,7 +9,7 @@ class Client
     /**
      * @var string
      */
-    protected $baseApiUrl = 'https://api.fanbridge.com/v3';
+    protected $baseApiUrl = 'https://api.fanbridge.com/v4';
 
     /**
      * @var string
