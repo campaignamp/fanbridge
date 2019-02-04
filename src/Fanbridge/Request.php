@@ -2,7 +2,7 @@
 
 namespace CampaignAmp\FanBridge;
 
-use Fanbridge\Response;
+use CampaignAmp\FanBridge\Response;
 use GuzzleHttp\Client as Guzzle;
 
 class Request
@@ -33,6 +33,19 @@ class Request
     {
         $response = $this->guzzle
             ->request('GET', $endpoint, $parameters);
+
+        return new Response($response);
+    }
+
+    /**
+     * @param string $endpoint
+     * @param array $parameters
+     * @return Response
+     */
+    public function post($endpoint, array $parameters = []): Response
+    {
+        $response = $this->guzzle
+            ->request('POST', $endpoint, $parameters);
 
         return new Response($response);
     }
