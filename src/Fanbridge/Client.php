@@ -57,7 +57,7 @@ class Client
     /**
      * @return string
      */
-    public function getAccessToken()
+    public function getAccessToken(): string
     {
         return $this->accessToken;
     }
@@ -74,7 +74,7 @@ class Client
         ]);
 
         return $this->request
-            ->get($endpoint, $parameters);
+            ->get($this->getFullUrl($endpoint), $parameters);
     }
 
     /**
@@ -89,13 +89,22 @@ class Client
         ]);
 
         return $this->request
-            ->post($endpoint, $parameters);
+            ->post($this->getFullUrl($endpoint), $parameters);
+    }
+
+    /**
+     * @param string $endpoint
+     * @return string
+     */
+    public function getFullUrl(string $endpoint): string
+    {
+        return $this->baseApiUrl . $endpoint;
     }
 
     /**
      * @return string
      */
-    public function getAuthUrl()
+    public function getAuthUrl(): string
     {
         return $this->baseApiUrl . '/login/oauth/authorize?client_id=' . $this->clientId;
     }
@@ -119,6 +128,14 @@ class Client
 
             $this->setAccessToken($body['access_token']);
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getCampaigns(): array
+    {
+        return $this->get('/campaigns');
     }
 
 }
