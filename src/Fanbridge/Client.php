@@ -113,7 +113,7 @@ class Client
      * @param string $code
      * @return void
      */
-    public function getOauthToken($code): void
+    public function requestAccessToken($code): void
     {
         $params = http_build_query([
             'client_id' => $this->clientId,
@@ -128,6 +128,14 @@ class Client
 
             $this->setAccessToken($body['access_token']);
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessToken(): string
+    {
+        return $this->accessToken;
     }
 
     /**
