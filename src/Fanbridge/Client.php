@@ -131,14 +131,6 @@ class Client
     }
 
     /**
-     * @return string
-     */
-    public function getAccessToken(): string
-    {
-        return $this->accessToken;
-    }
-
-    /**
      * @return array
      */
     public function getCampaigns(): array
