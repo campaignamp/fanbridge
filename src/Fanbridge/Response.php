@@ -8,9 +8,9 @@ use Psr\Http\Message\ResponseInterface;
 class Response
 {
     /**
-     * @var array
+     * @var ResponseInterface
      */
-    protected $body;
+    protected $response;
 
     /**
      * @param ResponseInterface $response
@@ -18,26 +18,31 @@ class Response
      */
     public function __construct(ResponseInterface $response)
     {
-        $this->setBody(json_decode($response->getBody()->getContents(), true));
+        $this->response = $response;
     }
 
     /**
-     * @param string $body
-     * @return self
+     * @return string
      */
-    public function setBody($body): self
+    public function getBody(): string
     {
-        $this->body = $body;
-
-        return $this;
+        return $this->response->getBody()->getContents();
     }
 
     /**
      * @return array
      */
-    public function getBody(): array
+    public function getBodyAsArray(): array
     {
-        return $this->body;
+        return json_decode($this->getBody(), true);
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this->response->getStatusCode();
     }
 
 }

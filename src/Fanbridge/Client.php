@@ -73,8 +73,14 @@ class Client
             'access_token' => $this->getAccessToken()
         ]);
 
-        return $this->request
+        $response = $this->request
             ->get($this->getFullUrl($endpoint), $parameters);
+
+        if (!$response || $response->getStatusCode() !== 200) {
+            return [];
+        }
+
+        return $response->getBodyAsArray();
     }
 
     /**
@@ -88,8 +94,14 @@ class Client
             'access_token' => $this->getAccessToken()
         ]);
 
-        return $this->request
+        $response = $this->request
             ->post($this->getFullUrl($endpoint), $parameters);
+
+        if (!$response || $response->getStatusCode() !== 200) {
+            return [];
+        }
+
+        return $response->getBodyAsArray();
     }
 
     /**
@@ -124,7 +136,7 @@ class Client
         $response = $this->request
             ->post($this->baseApiUrl . '/login/oauth/access_token?' . $params);
 
-        if ($response && $body = $response->getBody()) {
+        if ($response && $body = $response->getBodyAsArray()) {
 
             $this->setAccessToken($body['access_token']);
         }

@@ -32,7 +32,10 @@ class Request
     public function get($endpoint, array $parameters = []): Response
     {
         $response = $this->guzzle
-            ->request('GET', $endpoint, $parameters);
+            ->request('GET', $endpoint, [
+                    'query' =>$parameters
+                ]
+            );
 
         return new Response($response);
     }
@@ -45,7 +48,9 @@ class Request
     public function post($endpoint, array $parameters = []): Response
     {
         $response = $this->guzzle
-            ->request('POST', $endpoint, $parameters);
+            ->request('POST', $endpoint, [
+                'form_params' => $parameters
+            ]);
 
         return new Response($response);
     }
