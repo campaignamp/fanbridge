@@ -147,7 +147,13 @@ class Client
      */
     public function getCampaigns(): array
     {
-        return $this->get('/campaigns');
+        $campaigns = $this->get('/campaigns/emails');
+
+        if ($campaigns && isset($campaigns['items'])) {
+            return $campaigns['items'];
+        }
+
+        return [];
     }
 
 }
